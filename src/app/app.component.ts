@@ -16,6 +16,21 @@ export class AppComponent {
     }
   ];
 
+  public routeResolversPages = [
+    {
+      title: 'Blocking Resolver',
+      url: '/blocking-resolver'
+    },
+    {
+      title: 'Non Blocking Resolver',
+      url: '/non-blocking-resolver'
+    },
+    {
+      title: 'Progressive Shell Resolver',
+      url: '/progressive-shell-resolver'
+    }
+  ];
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,

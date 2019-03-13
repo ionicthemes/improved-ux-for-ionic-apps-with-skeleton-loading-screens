@@ -10,6 +10,19 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: './home/home.module#HomePageModule'
+  },
+  // Resolvers
+  {
+    path: 'blocking-resolver',
+    loadChildren: './blocking-resolver/blocking-resolver.module#BlockingResolverPageModule'
+  },
+  {
+    path: 'non-blocking-resolver',
+    loadChildren: './non-blocking-resolver/non-blocking-resolver.module#NonBlockingResolverPageModule'
+  },
+  {
+    path: 'progressive-shell-resolver',
+    loadChildren: './progressive-shell-resolver/progressive-shell-resolver.module#ProgressiveShellResolverPageModule'
   }
 ];
 

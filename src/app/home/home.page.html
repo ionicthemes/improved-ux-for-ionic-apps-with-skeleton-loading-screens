@@ -13,11 +13,117 @@
   <ion-card class="welcome-card">
     <ion-img src="/assets/shapes.svg"></ion-img>
     <ion-card-header>
-      <ion-card-subtitle>Get Started</ion-card-subtitle>
-      <ion-card-title>Welcome to Ionic</ion-card-title>
+      <ion-card-subtitle>Ionic 4</ion-card-subtitle>
+      <ion-card-title>Improving UX with App Shell Components</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
+      <p>
+        Let me explain you the importance of adopting the <b>App Shell</b> pattern in your Ionic apps and show you how to implement it using Ionic 4, Angular 7 and some advanced CSS techniques.
+      </p>
     </ion-card-content>
   </ion-card>
+
+  <ion-item-divider sticky="true">
+    <ion-label>Route Resolves</ion-label>
+  </ion-item-divider>
+  <section class="demo-section">
+    <p>
+      Angular Route Resolves are a special kind of route guards. They enable us to pre-fetch data from the server before navigating to a route.
+    </p>
+  </section>
+  <section class="demo-section">
+    <h5>Blocking Resolver</h5>
+    <p>
+      By design, Angular Route Resolvers won't transition to the page until the resolved <code>Observable</code> completes.
+    </p>
+    <p>
+      <b>Use case:</b> Let's suppose the backend is slow and takes 5 seconds to fetch data and return it to the client. The expected behavior for that scenario is that the page transition will be blocked for 5 seconds until the server sends data back to the client.
+    </p>
+    <p>
+      A minimal improvement would be to show a loader while the resolved <code>Observable</code> completes.
+    </p>
+    <p>
+      <ion-button expand="block" [routerLink]="['/blocking-resolver']">Blocking Resolver</ion-button>
+    </p>
+  </section>
+  <section class="demo-section">
+    <h5>Non Blocking Resolver</h5>
+    <p>
+      You can avoid waiting for the <code>Observable</code> to complete and have instant page transitions.
+    </p>
+    <p>
+      The trade-off of this approach is that the waiting time gets passed to the page component you are navigating to.
+    </p>
+    <p>
+      <ion-button expand="block" [routerLink]="['/non-blocking-resolver']">Non Blocking Resolver</ion-button>
+    </p>
+    <p>
+      This also means that you will be responsible for unhandled errors that may cause navigating to unavailable pages.
+    </p>
+  </section>
+  <section class="demo-section">
+    <h5>Progressive Shell Resolver</h5>
+    <p>
+      By showing an app shell layout while loading data, we fix the waiting time issue caused when using non-blocking resolvers.
+    </p>
+    <p>
+      <ion-button expand="block" [routerLink]="['/progressive-shell-resolver']">Shell Resolver</ion-button>
+    </p>
+  </section>
+
+  <ion-item-divider sticky="true">
+    <ion-label>App Shell Approaches</ion-label>
+  </ion-item-divider>
+  <section class="demo-section">
+    <h5>Shell Overlays</h5>
+    <p>
+      This is a straightforward approach. We define both <b>shell</b> and <b>view</b> layouts and switch/animate the transition between them when page/business/view data is available.
+    </p>
+<pre>
+&lt;ng-container *ngIf="!routeResolveData"&gt;
+  <b>&lt;!-- Shell layout here --&gt;</b>
+&lt;/ng-container&gt;
+
+&lt;ng-container *ngIf="routeResolveData"&gt;
+  <b>&lt;!-- View layout here --&gt;</b>
+&lt;/ng-container&gt;
+</pre>
+  </section>
+  <section class="demo-section">
+    <h5>Inline Shells</h5>
+    <p>
+      This type of shells use the same layout (DOM elements) to present the loading state using the shell model and the real data once it’s available.
+    </p>
+<pre>
+&lt;ion-row&gt;
+  &lt;ion-col size="4"&gt;
+    <b>&lt;app-image-shell class="add-spinner" [src]="routeResolveData?.image" [alt]="'Sample Image'"&gt;&lt;/app-image-shell&gt;</b>
+  &lt;/ion-col&gt;
+  &lt;ion-col size="8"&gt;
+    &lt;h3&gt;
+      <b>&lt;app-text-shell [data]="routeResolveData?.title"&gt;&lt;/app-text-shell&gt;</b>
+    &lt;/h3&gt;
+    &lt;p&gt;
+      <b>&lt;app-text-shell lines="3" [data]="routeResolveData?.description"&gt;&lt;/app-text-shell&gt;</b>
+    &lt;/p&gt;
+  &lt;/ion-col&gt;
+&lt;/ion-row&gt;
+</pre>
+  </section>
+
+  <ion-item-divider sticky="true">
+    <ion-label>App Shell Components</ion-label>
+  </ion-item-divider>
+  <section class="demo-section">
+    <h5>Image Shell</h5>
+    <p>
+
+    </p>
+  </section>
+  <section class="demo-section">
+    <h5>Text Shell</h5>
+    <p>
+
+    </p>
+  </section>
 </ion-content>

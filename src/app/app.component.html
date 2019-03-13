@@ -16,6 +16,16 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
+        <ion-list>
+          <ion-list-header>Route Resolves</ion-list-header>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of routeResolversPages; let i = index">
+            <ion-item [routerLink]="p.url">
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
       </ion-content>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>

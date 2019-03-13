@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Non Blocking Resolver</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section class="demo-section">
+    <p>
+      <b>Non Blocking</b> Route Resolvers provide a better UX. Still the waiting time gets passed to the page component.
+    </p>
+  </section>
+  <ng-container *ngIf="!routeResolveData">
+    <div style="margin: 20px 40px; text-align: center;">
+      <ion-spinner></ion-spinner>
+      <p>
+        You can show a loading indicator while fetching data from the backend.
+      </p>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="routeResolveData">
+    <ion-row *ngFor="let item of routeResolveData?.items" style="background-color: #FFF; padding: 10px;">
+      <ion-col size="4">
+        <img [src]="item?.image" alt="Sample Image" style="width: 100%; height: 100%;"/>
+      </ion-col>
+      <ion-col size="8">
+        <h3 style="margin-top: 0px;">
+          {{ item?.title }}
+        </h3>
+        <p>
+          {{ item?.description }}
+        </p>
+      </ion-col>
+    </ion-row>
+  </ng-container>
+</ion-content>

@@ -8,9 +8,6 @@ import { Component, Input, HostBinding } from '@angular/core';
   ]
 })
 export class ImageShellComponent {
-  // To debug shell styles
-  private debugMode = false;
-
   _src = '';
   _alt = '';
 
@@ -18,9 +15,7 @@ export class ImageShellComponent {
 
   @Input()
   set src(val: string) {
-    if (!this.debugMode) {
-      this._src = (val !== undefined && val !== null) ? val : '';
-    }
+    this._src = (val !== undefined && val !== null) ? val : '';
   }
 
   @Input()

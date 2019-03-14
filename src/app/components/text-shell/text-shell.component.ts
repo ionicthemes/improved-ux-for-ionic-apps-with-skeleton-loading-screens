@@ -8,17 +8,12 @@ import { Component, Input, HostBinding } from '@angular/core';
   ]
 })
 export class TextShellComponent {
-  // To debug shell styles, change configuration in the environment.ts file
-  private debugMode = false;
-
   _data: '';
 
   @HostBinding('class.text-loaded') textLoaded = false;
 
   @Input() set data(val: any) {
-    if (!this.debugMode) {
-      this._data = (val !== undefined && val !== null) ? val : '';
-    }
+    this._data = (val !== undefined && val !== null) ? val : '';
 
     if (this._data && this._data !== '') {
       this.textLoaded = true;

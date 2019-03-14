@@ -8,3 +8,166 @@ pre {
   background: #CCC;
   padding: 10px;
 }
+
+// Two lines text shell
+.text-shell {
+  position: relative;
+  min-height: 35px; /* (16px * 2) + 3px */
+
+  // No animation, default masked lines
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    background-image:
+      /* First line: 95% width grey, 5% white mask */
+      linear-gradient(to right, #EEE 95%, transparent 95%),
+      /* Separation between lines (a full width white line mask) */
+      linear-gradient(to right, transparent 100%, transparent 100%),
+      /* Second line: 65% width grey, 35% white mask */
+      linear-gradient(to right, #EEE 65%, transparent 65%);
+
+    background-size:
+      /* First line: 100% width, 16px height */
+      100% 16px,
+      /* Separation between lines: a full width, 3px height line */
+      100% 3px,
+      /* Second line: 100% width, 16px height */
+      100% 16px;
+
+    background-position:
+      /* First line: begins at left: 0, top: 0 */
+      0 0px,
+      /* Separation between lines: begins at left: 0, top: 16px (right below the first line) */
+      0 16px,
+      /* Second line: begins at left: 0, top: (16px + 3px) (right below the separation between lines) */
+      0 19px;
+  }
+
+  &.gradient-animation {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-repeat: no-repeat;
+      background-image:
+        /* First line: 95% width grey, 5% white mask */
+        linear-gradient(to right, transparent 95%, #FFF 95%),
+        /* Separation between lines (a full width white line mask) */
+        linear-gradient(to right, #FFF 100%, #FFF 100%),
+        /* Second line: 65% width grey, 35% white mask */
+        linear-gradient(to right, transparent 65%, #FFF 65%);
+
+      background-size:
+        /* First line: 100% width, 16px height */
+        100% 16px,
+        /* Separation between lines: a full width, 3px height line */
+        100% 3px,
+        /* Second line: 100% width, 16px height */
+        100% 16px;
+
+      background-position:
+        /* First line: begins at left: 0, top: 0 */
+        0 0px,
+        /* Separation between lines: begins at left: 0, top: 16px (right below the first line) */
+        0 16px,
+        /* Second line: begins at left: 0, top: (16px + 3px) (right below the separation between lines) */
+        0 19px;
+    }
+
+    // The animation that goes beneath the masks
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background:
+        linear-gradient(to right, #EEE 8%, #DDD 18%, #EEE 33%);
+      background-size: 800px 104px;
+      animation: animateBackground 2s ease-in-out infinite;
+    }
+  }
+
+  &.bouncing-animation {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-repeat: no-repeat;
+      background-image:
+        /* First line: 95% width grey */
+        linear-gradient(to right, #EEE 95%, transparent 95%),
+        /* Separation between lines (a full width transparent line mask) */
+        linear-gradient(to right, transparent 100%, transparent 100%),
+        /* Second line: 65% width grey */
+        linear-gradient(to right, #EEE 65%, transparent 65%);
+
+      background-size:
+        /* First line: 100% width, 16px height */
+        100% 16px,
+        /* Separation between lines: a full width, 3px height line */
+        100% 3px,
+        /* Second line: 100% width, 16px height */
+        100% 16px;
+
+      background-position:
+        /* First line: begins at left: 0, top: 0 */
+        0 0px,
+        /* Separation between lines: begins at left: 0, top: 16px (right below the first line) */
+        0 16px,
+        /* Second line: begins at left: 0, top: (16px + 3px) (right below the separation between lines) */
+        0 19px;
+
+      animation-direction: alternate-reverse;
+      animation-name: animateMultiLine;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      animation-duration: 1s;
+
+      @keyframes animateMultiLine {
+        0%{
+          background-size:
+            /* First line animation initial state: 80% width, 16px height */
+            80% 16px,
+            /* Separation between lines: a full width, 3px height line */
+            100% 3px,
+            /* Second line animation initial state: 60% width, 16px height */
+            60% 16px;
+        }
+
+        100%{
+          background-size:
+            /* First line animation final state: 100% width, 16px height */
+            100% 16px,
+            /* Separation between lines: a full width, 3px height line */
+            100% 3px,
+            /* Second line animation final state: 100% width, 16px height */
+            100% 16px;
+        }
+      }
+    }
+  }
+
+  @keyframes animateBackground {
+    0%{
+      background-position: -468px 0
+    }
+
+    100%{
+      background-position: 468px 0
+    }
+  }
+}

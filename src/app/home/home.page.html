@@ -117,13 +117,68 @@
   <section class="demo-section">
     <h5>Image Shell</h5>
     <p>
-
+      This component basically shows a loading indicator while fetching an image source.
     </p>
+    <p>
+      By listening to the <code>(load)</code> event attached to the <code>&lt;img/&gt;</code> element, once the image has loaded, we hide the loader.
+    </p>
+    <p>
+      <b>Note:</b> As the <code>[src]</code> property is empty, the <code>(load)</code> event won't get triggered and then the component will remain in it's <i>loading</i> state.
+    </p>
+<pre>
+&lt;app-image-shell [src]="" [alt]=""&gt;&lt;/app-image-shell&gt;
+</pre>
+    <!-- These wrappers are just to maintain aspect ratio of the image (1:1) -->
+    <div style="position: relative; padding-bottom: 100%; height: 0px;">
+      <div style="position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px;">
+        <app-image-shell [src]="" [alt]=""></app-image-shell>
+      </div>
+    </div>
   </section>
   <section class="demo-section">
     <h5>Text Shell</h5>
     <p>
-
+      This component basically works by wrapping the text node with a loading indicator while you are fetching data.
     </p>
+    <p>
+      While there are empty values the component adds some <i>loading</i> styles and animations. Whereas while there are non empty values, the loading state is removed.
+    </p>
+<pre>
+&lt;app-text-shell [data]="" lines="3"&gt;&lt;/app-text-shell&gt;
+</pre>
+    <p>
+      <app-text-shell [data]="" lines="3"></app-text-shell>
+    </p>
+  </section>
+
+  <ion-item-divider sticky="true">
+    <ion-label>CSS Animations</ion-label>
+  </ion-item-divider>
+  <section class="demo-section">
+    <h5>No Animation</h5>
+    <p>
+      Just the masked lines without any animation.
+    </p>
+    <div style="background-color: #FFF; padding: 20px; 10px">
+      <div class="text-shell"></div>
+    </div>
+  </section>
+  <section class="demo-section">
+    <h5>Background Gradient</h5>
+    <p>
+      This animation works by setting a background gradient beneath some mask elements.
+    </p>
+    <div style="background-color: #FFF; padding: 20px; 10px">
+      <div class="text-shell gradient-animation"></div>
+    </div>
+  </section>
+  <section class="demo-section">
+    <h5>Bouncing Lines Background</h5>
+    <p>
+      This animation works by animating the background-size property to achieve a <i>bouncing</i> effect.
+    </p>
+    <div style="background-color: #FFF; padding: 20px; 10px">
+      <div class="text-shell bouncing-animation"></div>
+    </div>
   </section>
 </ion-content>

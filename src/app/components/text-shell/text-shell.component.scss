@@ -1,0 +1,169 @@
+// Inspired in: https://stackoverflow.com/a/41096631/1116959
+@function randomNum($min, $max) {
+  $rand: random();
+  $randomNum: $min + floor($rand * (($max - $min) + 1));
+
+  @return $randomNum;
+}
+
+// Inspired in: https://hugogiraudel.com/2013/08/08/advanced-sass-list-functions/
+@function to-string($list, $glue: '', $is-nested: false) {
+  $result: null;
+
+  @for $i from 1 through length($list) {
+    $e: nth($list, $i);
+
+    @if type-of($e) == list {
+      $result: $result#{to-string($e, $glue, true)};
+    } @else {
+      $result: if(
+        $i != length($list) or $is-nested,
+        $result#{$e}#{$glue},
+        $result#{$e}
+      );
+    }
+  }
+
+  @return $result;
+}
+
+@mixin background-height($property, $lines: 1) {
+  $line-height: 16px;
+  $line-spacing: 3px;
+
+  #{$property}: calc((#{$line-height} * #{$lines}) + (#{$line-spacing} * (#{$lines} - 1)));
+}
+
+@mixin masked-lines-background($lines: 1) {
+  $line-height: 16px;
+  $line-spacing: 3px;
+  $bg-color: transparent;
+  $mask-color: #FFF;
+  $line-bg-color: #FFF;
+  $bg-y-pos: 0px;
+  $rand-width: #{randomNum(85, 95)};
+  $bg-image: 'linear-gradient(to right, ' + $bg-color + ' ' + $rand-width + '% , ' + $mask-color + ' ' + $rand-width + '%)';
+  $bg-position: '0 ' + $bg-y-pos;
+  $bg-size: '100% ' + $line-height;
+
+  @if ($lines == 1) {
+    background-image: #{$bg-image};
+    background-position: #{$bg-position};
+    background-size: #{$bg-size};
+    background-repeat: no-repeat;
+  } @else {
+    @for $i from 2 through $lines {
+      // Add separator between lines
+      $bg-image: append($bg-image, linear-gradient(to right, #{$line-bg-color} 100%, #{$line-bg-color} 100%));
+      // This linear-gradient as separator starts below the last line,
+      // so we have to add $line-height to our y-pos pointer
+      $bg-y-pos: calc((#{$line-height} * (#{$i} - 1)) + (#{$line-spacing} * (#{$i} - 2)));
+      $bg-position: append($bg-position, '0 ' + $bg-y-pos);
+      $bg-size: append($bg-size, '100% ' + $line-spacing);
+
+      // Add new line
+      // The last line should be narrow than the others
+      @if ($i == $lines) {
+        $rand-width: #{randomNum(30, 50)};
+      } @else {
+        $rand-width: #{randomNum(60, 80)};
+      }
+      $bg-image: append($bg-image, 'linear-gradient(to right, ' + $bg-color + ' ' + $rand-width + '% , ' + $mask-color + ' ' + $rand-width + '%)');
+      // This new line starts below the prviously added separator,
+      // so we have to add $line-spacing to our y-pos pointer
+      $bg-y-pos: calc((#{$line-height} * (#{$i} - 1)) + (#{$line-spacing} * (#{$i} - 1)));
+      $bg-position: append($bg-position, '0 ' + $bg-y-pos);
+      $bg-size: append($bg-size, '100% ' + $line-height);
+    }
+
+    background-image: #{to-string($bg-image, ', ')};
+    background-position: #{to-string($bg-position, ', ')};
+    background-size: #{to-string($bg-size, ', ')};
+    background-repeat: no-repeat;
+  }
+
+  @include background-height(min-height, $lines);
+}
+
+
+:host {
+  display: block;
+  position: relative;
+  color: transparent;
+  background-color: #FFF;
+  transform-style: preserve-3d;
+  // To fix 1px line misalignment in chrome: https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip
+  // (I also noticed that if I set the color to a solid color instead of having opacity, the issue doesn't happen)
+  background-clip: content-box;
+
+  // The animation that goes beneath the masks
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background:
+      linear-gradient(to right, #EEE 8%, #DDD 18%, #EEE 33%);
+    background-size: 800px 104px;
+    animation: animateBackground 2s ease-in-out infinite;
+  }
+
+  // Calculate default height for 1 line
+  @include background-height(min-height, 1);
+
+  // The masks
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    // Default one line mask
+    @include masked-lines-background(1);
+  }
+
+  // Support for [lines] attribute
+  &[lines="2"] {
+    // Calculate default height for 2 lines
+    @include background-height(min-height, 2);
+
+    &::after {
+      @include masked-lines-background(2);
+    }
+  }
+
+  &[lines="3"] {
+    // Calculate default height for 3 lines
+    @include background-height(min-height, 3);
+
+    &::after {
+      @include masked-lines-background(3);
+    }
+  }
+
+  &.text-loaded {
+    background: none;
+    min-height: inherit;
+    color: inherit;
+
+    &::before,
+    &::after {
+      background: none;
+      animation: 0;
+    }
+  }
+
+  @keyframes animateBackground {
+    0%{
+      background-position: -468px 0
+    }
+
+    100%{
+      background-position: 468px 0
+    }
+  }
+}

@@ -162,6 +162,15 @@
     <div style="background-color: #FFF; padding: 20px; 10px">
       <div class="text-shell"></div>
     </div>
+    <p>
+      <b>Note:</b> This approach plays well with use cases that require transparent backgrounds because it doesn't include an animation beneath.
+    </p>
+    <p>
+      Just set the masks to transparent and voila.
+    </p>
+    <div style="background-image: url(https://lorempixel.com/200/200/abstract/1/); padding: 20px; 10px">
+      <div class="text-shell"></div>
+    </div>
   </section>
   <section class="demo-section">
     <h5>Background Gradient</h5>
@@ -171,6 +180,12 @@
     <div style="background-color: #FFF; padding: 20px; 10px">
       <div class="text-shell gradient-animation"></div>
     </div>
+    <p>
+      <b>Side effect:</b> This solution doesn’t play well if you require the <code>text-shell</code> to have a transparent background as the masks need a solid color to work properly.
+    </p>
+    <div style="background-image: url(https://lorempixel.com/200/200/abstract/1/); padding: 20px; 10px">
+      <div class="text-shell gradient-animation"></div>
+    </div>
   </section>
   <section class="demo-section">
     <h5>Bouncing Lines Background</h5>
@@ -178,6 +193,12 @@
       This animation works by animating the background-size property to achieve a <i>bouncing</i> effect.
     </p>
     <div style="background-color: #FFF; padding: 20px; 10px">
+      <div class="text-shell bouncing-animation"></div>
+    </div>
+    <p>
+      <b>Note:</b> As we don’t use masks, this approach works well with use cases that require transparent backgrounds.
+    </p>
+    <div style="background-image: url(https://lorempixel.com/200/200/abstract/1/); padding: 20px; 10px">
       <div class="text-shell bouncing-animation"></div>
     </div>
   </section>

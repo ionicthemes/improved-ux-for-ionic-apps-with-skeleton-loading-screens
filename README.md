@@ -1,32 +1,31 @@
 ## Improved UX for Ionic apps with Skeleton Loading Screens
 
-### About this ionic 4 starter
+### Ionic Free Starter App
 UI Skeletons, Ghost Elements, Shell Elements? They are all the same! Think of them as cool content placeholders that are shown where the content will eventually be once it becomes available. 
 
-In this ionic 4 tutorial, you will learn the importance of adopting the App Shell pattern in your ionic apps and discuss how to implement it using Ionic 4 + Angular 7 and some advanced CSS techniques.
+This repo is part of [Ionic Skeleton Components Tutorial](https://ionicthemes.com/tutorials/about/improved-ux-for-ionic-apps-with-skeleton-loading-screens) where you will learn the importance of adopting the App Shell pattern in your ionic apps. Also, you will learn how to add Skeleton components to your Ionic Angular apps.
 
-This repo is the code of an Ionic 4 starter app that we created as part of a [Ionic Skeleton Animations guide](https://ionicthemes.com/tutorials/about/improved-ux-for-ionic-apps-with-skeleton-loading-screens). 
+### Start with Ionic Framework
+This post is part of the *Mastering Ionic Framework* series which deep dives into Ionic more advanced stuff. If you are new to Ionic Framwork, I strongly recommend you to first read our [previous introductory ionic 5 tutorial](https://ionicthemes.com/tutorials/about/ionic5-tutorial-migration-and-starter)
 
-### Start with Ionic 4
-This post is part of the *Mastering Ionic 4* series which deep dives into Ionic 4 more advanced stuff. Don’t be afraid, if you are new to Ionic 4, I strongly recommend you to first read our [previous introductory ionic 4 tutorial](https://ionicthemes.com/tutorials/about/ionic-4-vs-ionic-3)
-
-### Install this Ionic 4 starter app
+### Install this Ionic free starter app
 ```
 npm install
 ```
 
-### Browse Ionic 4 app
+### Browse the Ionic App
 ```
 ionic serve
 ```
+
 ### Demo
-https://ionic-4-app-shell.firebaseapp.com/home
+[Try this app](https://ionic-4-app-shell.firebaseapp.com/home).
 
 ### Free Ionic Examples
-Find more Ionic 4 tutorials and starter apps in https://ionicthemes.com
+Find more Ionic 5 tutorials and freebies in (IonicThemes)(https://ionicthemes.com/tutorials).
 
-### Get a premium Ionic 4 Starter App
-The following skeleton animations are part of our latest [Ionic 4 Full Starter App](https://ionicthemes.com/product/ionic4-full-starter-app). It’s an ionic 4 starter that you can use to jump start your app development and save yourself hundreds of hours of design and development.
+### Get a premium Ionic 5 Starter App
+The following skeleton animations are part of our latest [Ionic 5 Full Starter App](https://ionicthemes.com/product/ionic5-full-starter-app). It's an ionic template that you can use to jump start your app development and save yourself hundreds of hours of design and development.
 
 It also has lots of practical use cases you can use to learn Ionic Framework! 
 

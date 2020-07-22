@@ -22,7 +22,7 @@ ionic serve
 [Try this app](https://ionic-4-app-shell.firebaseapp.com/home).
 
 ### Free Ionic Examples
-Find more Ionic 5 tutorials and freebies in (IonicThemes)(https://ionicthemes.com/tutorials).
+Find more Ionic 5 tutorials and freebies in [IonicThemes](https://ionicthemes.com/tutorials).
 
 ### Get a premium Ionic 5 Starter App
 The following skeleton animations are part of our latest [Ionic 5 Full Starter App](https://ionicthemes.com/product/ionic5-full-starter-app). It's an ionic template that you can use to jump start your app development and save yourself hundreds of hours of design and development.
